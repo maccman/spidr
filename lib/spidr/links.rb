@@ -127,22 +127,6 @@ module Spidr
         doc.search('//a[@href]').each do |a|
           filter.call(a.get_attribute('href'))
         end
-
-        doc.search('//frame[@src]').each do |iframe|
-          filter.call(iframe.get_attribute('src'))
-        end
-
-        doc.search('//iframe[@src]').each do |iframe|
-          filter.call(iframe.get_attribute('src'))
-        end
-
-        doc.search('//link[@href]').each do |link|
-          filter.call(link.get_attribute('href'))
-        end
-
-        doc.search('//script[@src]').each do |script|
-          filter.call(script.get_attribute('src'))
-        end
       end
     end
 
