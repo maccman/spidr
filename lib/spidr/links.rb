@@ -100,6 +100,10 @@ module Spidr
       each_redirect.to_a
     end
 
+    def redirect_to
+      redirects_to.first
+    end
+
     #
     # Enumerates over every link in the page.
     #
