@@ -711,7 +711,7 @@ module Spidr
     #
     def dequeue
       if @shuffle
-        @queue.shuffle.shift
+        @queue.shuffle!.shift
       else
         @queue.shift
       end
