@@ -49,7 +49,7 @@ module Spidr
 
     # Cached cookies
     attr_reader :cookies
-    
+
     # Maximum depth
     attr_reader :max_depth
 
@@ -136,6 +136,7 @@ module Spidr
 
       @levels    = Hash.new(0)
       @max_depth = options[:max_depth]
+      @shuffle   = options[:shuffle]
 
       initialize_sanitizers(options)
       initialize_filters(options)
@@ -487,7 +488,7 @@ module Spidr
           return false
         rescue Actions::Action
         end
-        
+
         @queue << url
         @levels[url] = level
         return true
@@ -495,7 +496,7 @@ module Spidr
 
       return false
     end
-    
+
     #
     # Requests and creates a new Page object from a given URL.
     #
@@ -709,7 +710,11 @@ module Spidr
     #   The URL that was at the front of the queue.
     #
     def dequeue
-      @queue.shift
+      if @shuffle
+        @queue.shuffle.shift
+      else
+        @queue.shift
+      end
     end
 
     #
