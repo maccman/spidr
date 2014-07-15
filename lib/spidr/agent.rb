@@ -694,11 +694,11 @@ module Spidr
              SocketError,
              IOError,
              OpenSSL::SSL::SSLError,
-             Net::HTTPBadResponse
+             Net::HTTPBadResponse => e
 
         @sessions.kill!(url)
 
-        failed(url)
+        failed(url, e)
         return nil
       end
     end
@@ -742,9 +742,9 @@ module Spidr
     # @param [URI::HTTP] url
     #   The URL to add to the failures list.
     #
-    def failed(url)
+    def failed(url, error)
       @failures << url
-      @every_failed_url_blocks.each { |fail_block| fail_block.call(url) }
+      @every_failed_url_blocks.each { |fail_block| fail_block.call(url, error) }
       return true
     end
 

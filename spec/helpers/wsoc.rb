@@ -75,7 +75,7 @@ module Helpers
           )
         end
 
-        agent.every_failed_url { |url| puts "[FAILED] #{url}" }
+        agent.every_failed_url { |url, error| puts "[FAILED] #{url}" }
         agent.every_url { |url| puts url }
       end
     end

@@ -97,7 +97,7 @@ Build a URL map of a site:
 Print out the URLs that could not be requested:
 
     Spidr.site('http://sketchy.content.com/') do |spider|
-      spider.every_failed_url { |url| puts url }
+      spider.every_failed_url { |url, error| puts url }
     end
 
 Finds all pages which have broken links:
